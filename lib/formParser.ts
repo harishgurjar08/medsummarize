@@ -6,6 +6,9 @@
  * We use the `busboy` package which is already a dependency of Next.js.
  */
 
+// @ts-ignore
+import busboy from "busboy";
+
 import type { NextApiRequest } from "next";
 import { Writable } from "stream";
 
