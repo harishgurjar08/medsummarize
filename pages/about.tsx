@@ -96,12 +96,12 @@ export default function About() {
 
             {/* Social links */}
             <div className="flex flex-wrap gap-3">
-              <a href="https://linkedin.com/in/harish-singh" target="_blank" rel="noopener noreferrer"
+              <a href="https://linkedin.com/in/harishgurjar11" target="_blank" rel="noopener noreferrer"
                 className="btn-ghost flex items-center gap-2 px-4 py-2.5 text-sm"
                 style={{ color:"var(--blue)", borderColor:"rgba(77,166,255,0.25)", background:"rgba(77,166,255,0.07)" }}>
                 <Linkedin size={15}/> LinkedIn
               </a>
-              <a href="https://github.com/harish-singh" target="_blank" rel="noopener noreferrer"
+              <a href="https://github.com/harishgurjar08" target="_blank" rel="noopener noreferrer"
                 className="btn-ghost flex items-center gap-2 px-4 py-2.5 text-sm">
                 <Github size={15}/> GitHub
               </a>
