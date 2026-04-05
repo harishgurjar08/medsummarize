@@ -1,0 +1,201 @@
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500,400&f[]=satoshi@700,500,400,300&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design System ─────────────────────────────────────────────────────────── */
+:root {
+  --ink:        #0a0e14;
+  --ink-2:      #111720;
+  --ink-3:      #1a2332;
+  --ink-4:      #243044;
+  --border:     rgba(255,255,255,0.07);
+  --border-2:   rgba(255,255,255,0.12);
+
+  --text-1:     #eef2f7;
+  --text-2:     #8fa3bc;
+  --text-3:     #556070;
+
+  --green:      #00d68f;
+  --green-dim:  rgba(0,214,143,0.12);
+  --green-glow: rgba(0,214,143,0.22);
+
+  --blue:       #4da6ff;
+  --amber:      #ffb547;
+  --rose:       #ff5c7a;
+
+  --radius:     14px;
+  --radius-sm:  8px;
+}
+
+/* ── Reset & Base ───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--ink);
+  color: var(--text-1);
+  font-family: 'Satoshi', 'DM Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1,h2,h3,h4 {
+  font-family: 'Cabinet Grotesk', 'DM Serif Display', Georgia, serif;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--ink-4); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+/* ── Selection ──────────────────────────────────────────────────────────────── */
+::selection { background: rgba(0,214,143,0.25); color: #fff; }
+
+/* ── Utility classes ────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(17,23,32,0.75);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid var(--border);
+}
+
+.card {
+  background: var(--ink-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.card-hover {
+  transition: border-color 0.2s, transform 0.2s;
+}
+.card-hover:hover {
+  border-color: var(--border-2);
+  transform: translateY(-2px);
+}
+
+.text-grad {
+  background: linear-gradient(130deg, var(--green) 0%, #00b8d9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #00d68f, #00b8d9);
+  color: #071114;
+  font-weight: 700;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(0,214,143,0.3);
+}
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(0,214,143,0.4);
+}
+.btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Satoshi', sans-serif;
+}
+.btn-ghost:hover { border-color: var(--border-2); color: var(--text-1); background: rgba(255,255,255,0.04); }
+
+/* ── Grid background ────────────────────────────────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(0,214,143,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,214,143,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Noise overlay ──────────────────────────────────────────────────────────── */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── Dropzone ───────────────────────────────────────────────────────────────── */
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.dropzone:hover,
+.dropzone-active {
+  border-color: var(--green);
+  background: var(--green-dim);
+  box-shadow: 0 0 0 4px var(--green-glow);
+}
+
+/* ── Summary sections ───────────────────────────────────────────────────────── */
+.summary-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Animations ─────────────────────────────────────────────────────────────── */
+@keyframes fadeUp   { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+@keyframes float    { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-10px); } }
+@keyframes scan     { 0%,100% { transform:translateY(0); } 50% { transform:translateY(60px); } }
+@keyframes pulseDot { 0%,100% { opacity:.4; transform:scale(.9); } 50% { opacity:1; transform:scale(1.1); } }
+@keyframes shimmer  { 0% { background-position:-600px 0; } 100% { background-position:600px 0; } }
+@keyframes orb      { 0%,100% { transform:translate(0,0); } 50% { transform:translate(20px,-15px); } }
+
+.animate-fade-up  { animation: fadeUp  0.7s ease both; }
+.animate-fade-in  { animation: fadeIn  0.5s ease both; }
+.animate-float    { animation: float   6s   ease-in-out infinite; }
+.animate-orb      { animation: orb     10s  ease-in-out infinite; }
+
+.skeleton {
+  background: linear-gradient(90deg, var(--ink-3) 25%, var(--ink-4) 50%, var(--ink-3) 75%);
+  background-size: 600px 100%;
+  animation: shimmer 1.8s infinite;
+  border-radius: 6px;
+}
+
+/* ── Step indicators ────────────────────────────────────────────────────────── */
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulseDot 1.5s ease-in-out infinite;
+}
+
+/* ── Tag chips ──────────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  background: var(--ink-3);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+}
